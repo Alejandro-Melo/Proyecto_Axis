@@ -1,0 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&display=swap');
+body,
+button {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+}
+
+.container__contact {
+    font-weight: 400;
+}
+
+.container {
+    font-weight: 300;
+}
