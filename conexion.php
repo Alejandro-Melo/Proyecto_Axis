@@ -1,10 +1,9 @@
 <?php
 
- $host = "localhost";
+ $host = "127.0.0.1";
  $bd_user = "root";
- $pass = "Master_pro55";
+ $pass = "";
  $bd = "proyecto";
 
- $conexion = mysqli_connect($host, $bd_user, $pass, $bd) or die(mysql_error($));
-
+ $conexion = mysqli_connect($host, $bd_user, $pass, $bd);
 ?>
