@@ -280,24 +280,23 @@
                   <div class="col-auto m-2">
                     <input type="submit" value="Crear" name="submit" class="btn btn-primary">
                   </div>
-                  <?php
-      include_once("../../../conexion.php");
-      include("../SQL/Alta_Proveedor.php");
-      if(isset($_POST['submit'])){
-        if(isset($_POST['Direccion']) && isset($_POST['Nombre'])){
-          $Direccion = $_POST['Direccion'];
-          $Nombre = $_POST['Nombre'];
-          Alta_Proveedor($Direccion, $Nombre, $conexion);
-        }else{
-          echo "<h1>No ha ingresado uno de los datos</h1>";
-        }
+                          <?php
+              include_once("../../../conexion.php");
+              include("../SQL/Alta_Proveedor.php");
+              if(isset($_POST['submit'])){
+                if(isset($_POST['Direccion']) && isset($_POST['Nombre'])){
+                  $Direccion = $_POST['Direccion'];
+                  $Nombre = $_POST['Nombre'];
+                  Alta_Proveedor($Direccion, $Nombre, $conexion);
+                }else{
+                  echo "<h1>No ha ingresado uno de los datos</h1>";
+                }
+                
+                }
 
 
-      }
-
-
-    ?>
-                </*div>
+              ?>
+                </div>
             </form>
           </div>
         </div>
