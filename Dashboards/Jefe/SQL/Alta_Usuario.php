@@ -7,6 +7,8 @@ VALUES (NULL, '$tipo_usuario', '$contra', current_timestamp(), '$email');";
 
 mysqli_query($conexion, $sql);
 
+echo "<script> alert('Se ha ingresado con exito el usuario') </script>";
+
 $conexion->close();
 
 }

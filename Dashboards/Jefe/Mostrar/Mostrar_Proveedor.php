@@ -106,15 +106,15 @@
               <div class="collapse" id="layouts">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Altas/Alta_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Crear Usuarios</span>
                     </a>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Lista de Usuarios</span>
                     </a>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Mostrar/Aceptar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Aceptar Usuarios</span>
                     </a>
@@ -155,11 +155,11 @@
                       </a>
                       <div class="collapse" id="productos_abm">
                         <ul class="navbar-nav ps-3">
-                          <a href="Altas_Proveedor.php" class="nav-link px-3">
+                          <a href="../Altas/Alta_Producto.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Alta Productos</span>
                           </a>
-                          <a href="Mostrar_Productos.php" class="nav-link px-3">
+                          <a href="../Mostrar/Mostrar_Producto.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Listado Productos</span>
                           </a>
@@ -182,11 +182,11 @@
                       </a>
                       <div class="collapse" id="paquetes_abm">
                         <ul class="navbar-nav ps-3">
-                          <a href="Alta_Paquetes.php" class="nav-link px-3">
+                          <a href="../Altas/Alta_Paquetes.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Alta Paquetes</span>
                           </a>
-                          <a href="Mostrar_Paquetes.php" class="nav-link px-3">
+                          <a href="../Mostrar/Mostrar_Paquetes.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Listado Paquetes</span>
                           </a>
@@ -215,11 +215,11 @@
               <div class="collapse" id="Proveedores">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Alta_Proveedores.php" class="nav-link px-3">
+                    <a href="../Altas/Alta_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Agregar Proveedores</span>
                     </a>
-                    <a href="Mostrar_Proveedor.php" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Mostrar Proveedores</span>
                     </a>
@@ -244,7 +244,7 @@
               <div class="collapse" id="Stock">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Ver_Stock.php" class="nav-link px-3">
+                    <a href="../Mostrar/Ver_Stock.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Ver Stock</span>
                     </a>
@@ -293,7 +293,7 @@
                                                 <th><?php  echo $row['ID_Proveedor']?></th>
                                                 <th><?php  echo $row['Direccion']?></th>
                                                 <th><?php  echo $row['Nombre']?></th>  
-                                                <th><a href="../Modificar_Proveedor.php?id=<?php echo $row['ID_Proveedor']?>" class="btn btn-dark">Editar</a></th>
+                                                <th><a href="../Modificar/Modificar_Proveedor.php?id=<?php echo $row['ID_Proveedor']?>" class="btn btn-dark">Editar</a></th>
                                                 <th><a href="../SQL/Eliminar_Proveedor.php?id=<?php echo $row['ID_Proveedor']?>" class="btn btn-danger">Eliminar</a></th>                                        
                                             </tr>
                                         <?php 

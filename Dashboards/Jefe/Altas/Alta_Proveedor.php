@@ -106,15 +106,15 @@
               <div class="collapse" id="layouts">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Altas/Alta_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Crear Usuarios</span>
                     </a>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Lista de Usuarios</span>
                     </a>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Mostrar/Aceptar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Aceptar Usuarios</span>
                     </a>
@@ -155,11 +155,11 @@
                       </a>
                       <div class="collapse" id="productos_abm">
                         <ul class="navbar-nav ps-3">
-                          <a href="Altas_Proveedor.php" class="nav-link px-3">
+                          <a href="../Altas/Alta_Producto.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Alta Productos</span>
                           </a>
-                          <a href="Mostrar_Productos.php" class="nav-link px-3">
+                          <a href="../Mostrar/Mostrar_Producto.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Listado Productos</span>
                           </a>
@@ -182,11 +182,11 @@
                       </a>
                       <div class="collapse" id="paquetes_abm">
                         <ul class="navbar-nav ps-3">
-                          <a href="Alta_Paquetes.php" class="nav-link px-3">
+                          <a href="../Altas/Alta_Paquetes.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Alta Paquetes</span>
                           </a>
-                          <a href="Mostrar_Paquetes.php" class="nav-link px-3">
+                          <a href="../Mostrar/Mostrar_Paquetes.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Listado Paquetes</span>
                           </a>
@@ -215,11 +215,11 @@
               <div class="collapse" id="Proveedores">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Alta_Proveedores.php" class="nav-link px-3">
+                    <a href="../Altas/Alta_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Agregar Proveedores</span>
                     </a>
-                    <a href="Mostrar_Proveedor.php" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Mostrar Proveedores</span>
                     </a>
@@ -244,7 +244,7 @@
               <div class="collapse" id="Stock">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Ver_Stock.php" class="nav-link px-3">
+                    <a href="../Mostrar/Ver_Stock.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Ver Stock</span>
                     </a>
@@ -259,39 +259,36 @@
           
         </nav>
       </div>
+    
     </div>
-    <!-- offcanvas -->
     <main class="mt-5 pt-3">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Crear Usuarios</h1>
+            <h1>Crear Proveedor</h1>
             <form class="row g-3 m-1" method="post">
                 <div class="row">
                     <div class="col-md-3 m-1">
                         <label for="inputtext4" class="form-label">Direccion</label>
-                        <input type="text" class="form-control" name="Direccion" id="inputtext4" required>
+                        <input type="text" class="form-control" name="Direccion" id="inputtext4">
                     </div>
                     <div class="col-md-3 m-1">
-                        <label for="inputtext4" class="form-label">Nombre de Empresa</label>
-                        <input type="text" class="form-control" name="Nombre" id="inputtext4" required>
+                        <label for="inputtext4" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="Nombre" id="inputtext4">
                     </div>
-                  
-                </div>
-                <div class="row">
+                </div>  
                   <div class="col-auto m-2">
-                    <input type="submit" value="Crear" name="submit" class="btn btn-primary" required>
+                    <input type="submit" value="Crear" name="submit" class="btn btn-primary">
                   </div>
                   <?php
-      include_once("../../conexion.php");
-      include("SQL/Alta_Proveedor.php");
+      include_once("../../../conexion.php");
+      include("../SQL/Alta_Proveedor.php");
       if(isset($_POST['submit'])){
         if(isset($_POST['Direccion']) && isset($_POST['Nombre'])){
           $Direccion = $_POST['Direccion'];
           $Nombre = $_POST['Nombre'];
           Alta_Proveedor($Direccion, $Nombre, $conexion);
-        }
-        else{
+        }else{
           echo "<h1>No ha ingresado uno de los datos</h1>";
         }
 
@@ -300,7 +297,7 @@
 
 
     ?>
-                </div>
+                </*div>
             </form>
           </div>
         </div>

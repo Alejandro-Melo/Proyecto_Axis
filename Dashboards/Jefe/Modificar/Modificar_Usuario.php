@@ -106,15 +106,15 @@
               <div class="collapse" id="layouts">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Alta_Usuario.php" class="nav-link px-3">
+                    <a href="../Altas/Alta_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Crear Usuarios</span>
                     </a>
-                    <a href="Mostrar_Usuario.php" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Listado de Usuarios</span>
+                      <span>Lista de Usuarios</span>
                     </a>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Mostrar/Aceptar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Aceptar Usuarios</span>
                     </a>
@@ -155,11 +155,11 @@
                       </a>
                       <div class="collapse" id="productos_abm">
                         <ul class="navbar-nav ps-3">
-                          <a href="Altas_Usuario.php" class="nav-link px-3">
+                          <a href="../Altas/Alta_Producto.php" class="nav-link px-3">
                             <span class="me-2"></span>
-                            <span>Agregar Productos</span>
+                            <span>Alta Productos</span>
                           </a>
-                          <a href="Listado_Productos.php" class="nav-link px-3">
+                          <a href="../Mostrar/Mostrar_Producto.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Listado Productos</span>
                           </a>
@@ -182,11 +182,11 @@
                       </a>
                       <div class="collapse" id="paquetes_abm">
                         <ul class="navbar-nav ps-3">
-                          <a href="Agregar_Paquetes.php" class="nav-link px-3">
+                          <a href="../Altas/Alta_Paquetes.php" class="nav-link px-3">
                             <span class="me-2"></span>
-                            <span>Agregar Paquetes</span>
+                            <span>Alta Paquetes</span>
                           </a>
-                          <a href="Listado_Paquetes.php" class="nav-link px-3">
+                          <a href="../Mostrar/Mostrar_Paquetes.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Listado Paquetes</span>
                           </a>
@@ -215,13 +215,13 @@
               <div class="collapse" id="Proveedores">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Agregar_Proveedores.php" class="nav-link px-3">
+                    <a href="../Altas/Alta_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Agregar Proveedores</span>
                     </a>
-                    <a href="Listado_Proveedores.php" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Listado Proveedores</span>
+                      <span>Mostrar Proveedores</span>
                     </a>
                   </li>
                 </ul>
@@ -244,7 +244,7 @@
               <div class="collapse" id="Stock">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Ver_Stock.php" class="nav-link px-3">
+                    <a href="../Mostrar/Ver_Stock.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Ver Stock</span>
                     </a>
@@ -260,40 +260,6 @@
         </nav>
       </div>
     </div>
-    <!-- offcanvas -->
-    <main class="mt-5 pt-3">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-            <h1>Modificar Usuarios</h1>
-            <form class="row g-3 m-1" method="post">
-                <div class="row">
-                    <div class="col-md-3 m-1">
-                        <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="inputEmail4" required>
-                    </div>
-                    <div class="col-md-3 m-1">
-                        <label for="inputcontra4" class="form-label">Tipo de Usuario</label>
-                        <select class="form-select"name="select" id="">
-                            <option value="1">Jefe</option>
-                            <option value="2">Comprador</option>
-                            <option value="3">Vendedor</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 m-1">
-                        <label for="inputAddress" class="form-label">Contraseña</label>
-                        <input type="text" class="form-control" name="contra" id="inputAddress" required>
-                    </div>
-                    <div class="col-md-3 m-1">
-                        <label for="inputAddress" class="form-label">ID</label>
-                        <input type="text" class="form-control" name="contra" disabled id="inputAddress" placeholder=<?php $ID_U=$_GET['id']; echo "$ID_U" ?> required>
-                    </div>
-                    </div>
-                  <div class="col-auto m-2">
-                    <input type="submit" value="Crear" name="submit" class="btn btn-primary">
-                  </div>
                   <?php
       include_once("../../../conexion.php");
       include_once("../SQL/Modificar_Usuario.php");
@@ -324,7 +290,6 @@
                 case 3: $tipo_usuario = "Vendedor";
                 break;
             }
-
             Modificar_Usuario($ID_U, $tipo_usuario, $email, $contra, $conexion);
 
         }
