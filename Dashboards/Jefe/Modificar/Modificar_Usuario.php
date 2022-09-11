@@ -106,11 +106,11 @@
               <div class="collapse" id="layouts">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="Alta_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Crear Usuarios</span>
                     </a>
-                    <a href="#" class="nav-link px-3">
+                    <a href="Mostrar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Listado de Usuarios</span>
                     </a>
@@ -265,12 +265,12 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Crear Usuarios</h1>
+            <h1>Modificar Usuarios</h1>
             <form class="row g-3 m-1" method="post">
                 <div class="row">
                     <div class="col-md-3 m-1">
                         <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="inputEmail4">
+                        <input type="email" class="form-control" name="email" id="inputEmail4" required>
                     </div>
                     <div class="col-md-3 m-1">
                         <label for="inputcontra4" class="form-label">Tipo de Usuario</label>
@@ -284,13 +284,20 @@
                 <div class="row">
                     <div class="col-md-3 m-1">
                         <label for="inputAddress" class="form-label">Contraseña</label>
-                        <input type="text" class="form-control" name="contra" id="inputAddress">
+                        <input type="text" class="form-control" name="contra" id="inputAddress" required>
                     </div>
-                  </div>
+                    <div class="col-md-3 m-1">
+                        <label for="inputAddress" class="form-label">ID</label>
+                        <input type="text" class="form-control" name="contra" disabled id="inputAddress" placeholder=<?php $ID_U=$_GET['id']; echo "$ID_U" ?> required>
+                    </div>
+                    </div>
                   <div class="col-auto m-2">
                     <input type="submit" value="Crear" name="submit" class="btn btn-primary">
                   </div>
                   <?php
+      include_once("../../../conexion.php");
+      include_once("../SQL/Modificar_Usuario.php");
+
       if(isset($_POST['submit'])){
         if(isset($_POST['email']) && isset($_POST['select']) && isset($_POST['contra'])){
             $email = $_POST["email"];
@@ -317,16 +324,8 @@
                 case 3: $tipo_usuario = "Vendedor";
                 break;
             }
-            
-            require_once("../../conexion.php");
 
-
-            $sql = "INSERT INTO `usuario` (`ID_U`, `Tipo_usuario`, `Contrasenia`, `Date_creation`, `Email`) 
-            VALUES (NULL, '$tipo_usuario', '$contra', current_timestamp(), '$email');";
-        
-            mysqli_query($conexion, $sql);
-        
-            $conexion->close();
+            Modificar_Usuario($ID_U, $tipo_usuario, $email, $contra, $conexion);
 
         }
       }
