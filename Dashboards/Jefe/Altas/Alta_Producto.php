@@ -264,66 +264,81 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Crear Usuarios</h1>
+            <h1>Crear Producto</h1>
             <form class="row g-3 m-1" method="post">
                 <div class="row">
-                    <div class="col-md-3 m-1">
-                        <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="inputEmail4">
+                    <div class="col-md-3">
+                        <label for="inputEmail4" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="Nombre" id="inputEmail4">
                     </div>
-                    <div class="col-md-3 m-1">
-                        <label for="inputcontra4" class="form-label">Tipo de Usuario</label>
-                        <select class="form-select" name="select" id="">
-                          
-                            <option value="1">Jefe</option>
-                            <option value="2">Comprador</option>
-                            <option value="3">Vendedor</option>
+                    <div class="col-md-3">
+                        <label for="inputEmail4" class="form-label">Precio</label>
+                        <input type="number" class="form-control" name="Precio" id="inputEmail4">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputcontra4" class="form-label">Proveedor</label>
+                        <select class="form-select" name="Proveedor" id="">
+                        <?php 
+                                include("../../../conexion.php");
+                                include("../SQL/Alta_Producto.php");
+
+                                $query = "SELECT * FROM `proveedor`";
+
+                                $proveedores = mysqli_query($conexion, $query);
+
+                                $options = "";
+
+                                while($row = mysqli_fetch_array($proveedores))
+                                {
+                                    $options = $options."<option value='$row[0]'>$row[2]</option>";
+                                }
+
+                                ?>
+                            <?php echo $options;?>
                         </select>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 m-1">
-                        <label for="inputAddress" class="form-label">Contraseña</label>
-                        <input type="text" class="form-control" name="contra" id="inputAddress">
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label for="exampleFormControlTextarea1">Descripción</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Descripcion"></textarea>
                     </div>
-                  </div>
-                  <div class="col-auto m-2">
+                    <div class="col-md-3">
+                        <br>
+                        <label for="inputEmail4" class="form-label">Unidades Inciales</label>
+                        <input type="number" class="form-control" name="Cant_stock" id="inputEmail4">
+                    </div>
+                    
+                </div>
+                  <div class="col-auto m-1">
                     <input type="submit" value="Crear" name="submit" class="btn btn-primary">
                   </div>
+
                   <?php
-      include_once("../../../conexion.php");
-      include("../SQL/Alta_Usuario.php");
       if(isset($_POST['submit'])){
-        if(isset($_POST['email']) && isset($_POST['select']) && isset($_POST['contra'])){
-            $email = $_POST["email"];
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-              $emailErr = "Invalid email format";
-            }  
-            $contra = $_POST['contra'];
-
-            $uppercase = preg_match('@[A-Z]@', $contra);
-            $lowercase = preg_match('@[a-z]@', $contra);
-            $number    = preg_match('@[0-9]@', $contra);
+        if(isset($_POST['Nombre']) && isset($_POST['Precio']) && isset($_POST['Descripcion']) && isset($_POST['Proveedor']) && isset($_POST['Cant_stock'])){
+            $Nombre = $_POST['Nombre'];
             
-              if(!$uppercase || !$lowercase || !$number || strlen($contra) < 8) {
-              echo '<h6 class="m-1"> La contraseña no es lo suficientemente fuerte </h6>';
-              }
-            $tipo_usuario = "";
-
-            switch($_POST['select']){
-                case 1: $tipo_usuario = "Jefe";
-                break;
-                case 2: $tipo_usuario = "Comprador";
-                break;
-                case 3: $tipo_usuario = "Vendedor";
-                break;
+            if($_POST['Precio'] > 0){
+                $Precio = $_POST['Precio'];
             }
-            Alta_SQL($tipo_usuario, $contra, $email, $conexion);
+
+            $Descripcion = $_POST['Descripcion'];
+
+            if($_POST['Cant_stock'] > 0){
+                $Cant_stock = $_POST['Cant_stock'];
+            }
+            
+            $Proveedor = $_POST['Proveedor'];
+
+            echo "$Nombre, $Precio, $Cant_stock, $Proveedor";
+
+            Alta_Producto($Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $conexion);
+
           } else{
             echo "<h1>No ha ingresado uno de los datos</h1>";
           }
         }
     ?>
+                </div>
                 </div>
             </form>
           </div>

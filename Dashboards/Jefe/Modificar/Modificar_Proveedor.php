@@ -265,7 +265,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Crear Proveedor</h1>
+            <h1>Modificar Proveedor</h1>
             <form class="row g-3 m-1" method="post">
                 <div class="row">
                     <div class="col-md-3 m-1">
