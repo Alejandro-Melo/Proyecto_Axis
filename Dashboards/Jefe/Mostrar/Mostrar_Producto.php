@@ -269,16 +269,16 @@
             <div class="col-md-8">
                             <table class="table" >
                                 <thead class="table-light table-striped" >
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>ID</th>
                                         <th>Nombre</th>
                                         <th>Precio</th>
                                         <th>Descripcion</th>
                                         <th>Ventas</th>
-                                        <th>Cantidad de Stock</th>
+                                        <th>Cantidad Stock</th>
                                         <th>Proveedor</th>
                                         <th>Direccion</th>
-                                        <th></th>
+                                        <th></th>                                        
                                         <th></th>
                                     </tr>
                                 </thead>
