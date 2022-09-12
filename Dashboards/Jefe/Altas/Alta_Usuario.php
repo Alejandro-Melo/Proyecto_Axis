@@ -299,15 +299,6 @@
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
               $emailErr = "Invalid email format";
             }  
-            $contra = $_POST['contra'];
-
-            $uppercase = preg_match('@[A-Z]@', $contra);
-            $lowercase = preg_match('@[a-z]@', $contra);
-            $number    = preg_match('@[0-9]@', $contra);
-            
-              if(!$uppercase || !$lowercase || !$number || strlen($contra) < 8) {
-              echo '<h6 class="m-1"> La contraseña no es lo suficientemente fuerte </h6>';
-              }
             $tipo_usuario = "";
 
             switch($_POST['select']){
@@ -318,7 +309,17 @@
                 case 3: $tipo_usuario = "Vendedor";
                 break;
             }
-            Alta_SQL($tipo_usuario, $contra, $email, $conexion);
+
+            $uppercase = preg_match('@[A-Z]@', $_POST['contra']);
+            $lowercase = preg_match('@[a-z]@', $_POST['contra']);
+            $number    = preg_match('@[0-9]@', $_POST['contra']);
+            
+              if(!$uppercase || !$lowercase || !$number || strlen($_POST['contra']) < 8) {
+              echo '<h6 class="m-1"> La contraseña no es lo suficientemente fuerte </h6>';
+              } else{
+                $contra = $_POST['contra'];
+                Alta_SQL($tipo_usuario, $contra, $email, $conexion);
+              }
           } else{
             echo "<h1>No ha ingresado uno de los datos</h1>";
           }
