@@ -319,18 +319,20 @@
             
             if($_POST['Precio'] > 0){
                 $Precio = $_POST['Precio'];
+            } else{
+              echo "El valor ingresado para Precio es invalido."
             }
 
             $Descripcion = $_POST['Descripcion'];
 
             if($_POST['Cant_stock'] > 0){
                 $Cant_stock = $_POST['Cant_stock'];
+            } else{
+              echo "El valor para Cantidad de Stock ingresado es invalido."
             }
             
             $Proveedor = $_POST['Proveedor'];
-
-            echo "$Nombre, $Precio, $Cant_stock, $Proveedor";
-
+            
             Alta_Producto($Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $conexion);
 
           } else{
