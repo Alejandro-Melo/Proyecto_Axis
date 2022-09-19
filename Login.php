@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chequeo de data</title>
+    <title>Login</title>
 </head>
 <body>
 <form action="" method="post" name="Login_Form">
@@ -18,8 +18,8 @@
       <td colspan="2" align="left" valign="top"><h3>Login</h3></td>
     </tr>
     <tr>
-      <td align="right" valign="top">Username</td>
-      <td><input name="Username" type="text" class="Input"></td>
+      <td align="right" valign="top">Email</td>
+      <td><input name="Email" type="text" class="Input"></td>
     </tr>
     <tr>
       <td align="right">Password</td>
@@ -34,14 +34,23 @@
 
 <?php session_start();
                
+        include("conexion.php");
+
         if(isset($_POST['Submit'])){
                 
-                $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
-                $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
-   
-                $type = User_type($Username, $Password);
-                echo $type;
-                switch ($type) {
+                if( isset($_POST['Email']) || isset($_POST['Password'])){
+                $_SESSION['User']['Email'] = $_POST['Email'];
+                $_SESSION['User']['Password'] = $_POST['Password'];
+
+                $type = User_type($_SESSION['User']['Email'], $_SESSION['User']['Password'], $conexion);
+
+                } else{
+                  echo "<h1>Ha ingresado algunos de los datos incorrectamante, o no existen.</h1>";
+                }
+                
+                if(NULL !== $type){
+                
+                  switch ($type) {
                     case 'Jefe':
                         header("Location: Dashboards/dashboard_jefe.html");
                         break;
@@ -53,30 +62,34 @@
                         break;  
                     
                     case 'Usuario':
-                        header("Location: usuario.html");
+                        header("Location: Usuario.html");
                         break;
                         
                     default:
-                        header("Location: index.php");
-                        echo $type;
+                        echo "<h1>Ha ingresado algunos de los datos incorrectamante, o no existen.</h1>";
                         break;
-                }
-                
-            }
-                function User_type ($Username, $Password) {
+                  }
+                } else{
+                    session_unset();
+                    header( "refresh:5;Login.php" );
+                    echo '<h3>Ha ingresado algunos de los datos incorrectamante, o no existen.</h3>';
+                  }
 
-                    $database = fopen("usuarios.txt", "r");
-                    $contents = fread($database, filesize("usuarios.txt"));
-                    $users = explode(" ", $contents);
-                    for ($i=0; $i < count($users) ; $i++) { 
-                        $user = explode(":", $users[$i]);
-                        if($user[0] == $Username && $user[1]==$Password){
-                            return $user[2];
-                        }
-                    }
-                    return "No existe";
-                    fclose($database);
-                }
+            }
+                function User_type ($Email, $Password, $conexion) {
+                  
+                  $sql = "SELECT * FROM usuario WHERE Email = '$Email' AND Contrasenia = '$Password'";
+                  $query = mysqli_query($conexion, $sql);
+                  
+                  $row = mysqli_fetch_array($query);
+                  if($row !== NULL){
+                  return $row['Tipo_usuario'];
+                  } else{
+                    return NULL;
+                  }
+                
+                  }
+                
 
 
 
