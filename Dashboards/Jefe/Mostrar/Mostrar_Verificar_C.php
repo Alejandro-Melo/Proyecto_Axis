@@ -96,7 +96,7 @@
                 href="#layouts"
               >
                 <span class="me-2"><i class="bi bi-person-fill"></i></span>
-                <span>Productos</span>
+                <span>Usuarios</span>
                 <span class="ms-auto">
                   <span class="right-icon">
                     <i class="bi bi-chevron-down"></i>
@@ -106,17 +106,17 @@
               <div class="collapse" id="layouts">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="../Altas/Alta_Producto.php" class="nav-link px-3">
+                    <a href="../Altas/Alta_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Crear Productos</span>
+                      <span>Crear Usuarios</span>
                     </a>
-                    <a href="../Mostrar/Mostrar_Producto.php" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Lista de Productos</span>
+                      <span>Lista de Usuarios</span>
                     </a>
-                    <a href="../Mostrar/Aceptar_Producto.php" class="nav-link px-3">
+                    <a href="../Mostrar/Aceptar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Aceptar Productos</span>
+                      <span>Aceptar Usuarios</span>
                     </a>
                   </li>
                 </ul>
@@ -265,19 +265,17 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Mostrar Productos</h1>
+            <h1>Mostrar Usuarios</h1>
             <div class="col-md-8">
                             <table class="table" >
                                 <thead class="table-light table-striped" >
-                                    <tr class="text-center">
+                                    <tr>
                                         <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th>Descripcion</th>
-                                        <th>Ventas</th>
-                                        <th>Cantidad Stock</th>
-                                        <th>Proveedor</th>
-                                        <th></th>                                        
+                                        <th>Tipo de Usuario</th>
+                                        <th>Email</th>
+                                        <th>Hora de Creación</th>
+                                        <th>Contraseña</th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -285,30 +283,24 @@
                                 <tbody>
                                         <?php
                                             include("../../../conexion.php");
-
-                                            $sql="SELECT *, producto.Nombre As Nombre_Producto, proveedor.Nombre As Nombre_Proveedor FROM producto 
-                                            INNER JOIN proveedor ON producto.ID_Proveedor = proveedor.ID_Proveedor;";
+                                        
+                                            $sql="SELECT * FROM Usuario WHERE Activo = false";
                                             $query=mysqli_query($conexion,$sql);
+                                        
                                             $row=mysqli_fetch_array($query);
 
                                             while($row=mysqli_fetch_array($query)){
-
-                                        ?>  
-                                        
+                                        ?>
                                             <tr>
-                                                <th><?php  echo $row['ID_Producto']?></th>
-                                                <th><?php  echo $row['Nombre_Producto']?></th>
-                                                <th><?php  echo $row['Precio']?></th>
-                                                <th><?php  echo $row['Descripcion']?></th>
-                                                <th><?php  echo $row['Ventas']?></th>
-                                                <th><?php  echo $row['Cantidad_Stock']?></th>
-                                                <th><?php  echo $row['Nombre_Proveedor']?></th>
-                                                <th><a href="../Modificar/Modificar_Producto.php?id=<?php echo $row['ID_Producto']?>" class="btn btn-dark">Editar</a></th>
-                                                <th><a href="../SQL/Eliminar_Usuario.php?id=<?php echo $row['ID_Producto']?>" class="btn btn-danger">Eliminar</a></th>                                        
+                                                <th><?php  echo $row['ID_U']?></th>
+                                                <th><?php  echo $row['Tipo_usuario']?></th>
+                                                <th><?php  echo $row['Email']?></th>
+                                                <th><?php  echo $row['Date_creation']?></th>  
+                                                <th><?php  echo $row['Contrasenia']?></th>   
+                                                <th><a href="../SQL/Habilitar_Cliente.php?id=<?php echo $row['ID_U']?>" class="btn btn-dark">Aceptar</a></th>
+                                                <th><a href="../SQL/Eliminar_Usuario.php?id=<?php echo $row['ID_U']?>" class="btn btn-danger">Eliminar</a></th>                                        
                                             </tr>
-                                            
                                         <?php 
-
                                             }
                                         ?>  
                 </div>

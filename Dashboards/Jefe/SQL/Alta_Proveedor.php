@@ -10,6 +10,7 @@ mysqli_query($conexion, $sql);
 ?>
 
 <?php
+
 function Asignar_Telefonos($Rut, $Telefonos, $conexion){
     $sql = "INSERT INTO `proveedor_telefonos` (`Rut`, `telefono`) 
 VALUES ('$Rut', '$Telefonos');";

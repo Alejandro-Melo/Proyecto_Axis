@@ -39,7 +39,7 @@
 <?php session_start();
                
         include("conexion.php");
-        include("SQL/Alta_Cliente.php");
+        include("SQL_Login_Registro/Alta_Cliente.php");
 
         if(isset($_POST['Submit'])){
             if(isset($_POST['Email']) && isset($_POST['Contrasenia']) && isset($_POST['C_Contrasenia'])){
