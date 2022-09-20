@@ -280,7 +280,7 @@
                         <select class="form-select" name="Proveedor" id="">
                         <?php 
                                 include("../../../conexion.php");
-                                include("../SQL/Alta_Producto.php");
+                                include("../../../SQL/Alta_Producto.php");
 
                                 $query = "SELECT * FROM `proveedor`";
 
@@ -290,7 +290,7 @@
 
                                 while($row = mysqli_fetch_array($proveedores))
                                 {
-                                    $options = $options."<option value='$row[0]'>$row[2]</option>";
+                                    $options .= "<option value='$row[0]'>$row[2]</option>";
                                 }
 
                                 ?>
@@ -315,12 +315,13 @@
                   <?php
       if(isset($_POST['submit'])){
         if(isset($_POST['Nombre']) && isset($_POST['Precio']) && isset($_POST['Descripcion']) && isset($_POST['Proveedor']) && isset($_POST['Cant_stock'])){
+            
             $Nombre = $_POST['Nombre'];
             
             if($_POST['Precio'] > 0){
                 $Precio = $_POST['Precio'];
             } else{
-              echo "El valor ingresado para Precio es invalido."
+              echo "El valor ingresado para Precio es invalido.";
             }
 
             $Descripcion = $_POST['Descripcion'];
@@ -328,14 +329,14 @@
             if($_POST['Cant_stock'] > 0){
                 $Cant_stock = $_POST['Cant_stock'];
             } else{
-              echo "El valor para Cantidad de Stock ingresado es invalido."
+              echo "El valor para Cantidad de Stock ingresado es invalido.";
             }
             
             $Proveedor = $_POST['Proveedor'];
-            
+
             Alta_Producto($Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $conexion);
 
-          } else{
+          } else {
             echo "<h1>No ha ingresado uno de los datos</h1>";
           }
         }

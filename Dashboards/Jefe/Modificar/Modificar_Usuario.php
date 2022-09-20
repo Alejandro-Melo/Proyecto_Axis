@@ -262,7 +262,7 @@
     </div>
                   <?php
       include_once("../../../conexion.php");
-      include_once("../SQL/Modificar_Usuario.php");
+      include("../../../SQL/Modificar_Usuario.php");
 
       if(isset($_POST['submit'])){
         if(isset($_POST['email']) && isset($_POST['select']) && isset($_POST['contra'])){

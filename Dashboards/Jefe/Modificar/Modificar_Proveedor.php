@@ -282,7 +282,7 @@
                   </div>
                   <?php
       include_once("../../../conexion.php");
-      include("../SQL/Modificar_Proveedor.php");
+      include("../../../SQL/Modificar_Proveedor.php");
       if(isset($_POST['submit'])){
         if(isset($_POST['Direccion']) && isset($_POST['Nombre'])){
           $Direccion = $_POST['Direccion'];

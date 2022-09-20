@@ -265,14 +265,15 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Mostrar Usuarios</h1>
+            <h1>Mostrar Proveedores</h1>
             <div class="col-md-8">
                             <table class="table" >
                                 <thead class="table-light table-striped" >
                                     <tr>
-                                        <th>ID</th>
+                                        <th>RUT</th>
                                         <th>Direccion</th>
                                         <th>Nombre de Empresa</th>
+                                        <th>Lista de Telefonos</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -282,7 +283,7 @@
                                         <?php
                                             include("../../../conexion.php");
                                         
-                                            $sql="SELECT * FROM Proveedor";
+                                            $sql="SELECT * FROM Proveedor " ;
                                             $query=mysqli_query($conexion,$sql);
                                         
                                             $row=mysqli_fetch_array($query);
@@ -290,11 +291,12 @@
                                             while($row=mysqli_fetch_array($query)){
                                         ?>
                                             <tr>
-                                                <th><?php  echo $row['ID_Proveedor']?></th>
+                                                <th><?php  echo $row['Rut']?></th> 
                                                 <th><?php  echo $row['Direccion']?></th>
-                                                <th><?php  echo $row['Nombre']?></th>  
-                                                <th><a href="../Modificar/Modificar_Proveedor.php?id=<?php echo $row['ID_Proveedor']?>" class="btn btn-dark">Editar</a></th>
-                                                <th><a href="../SQL/Eliminar_Proveedor.php?id=<?php echo $row['ID_Proveedor']?>" class="btn btn-danger">Eliminar</a></th>                                        
+                                                <th><?php  echo $row['Nombre']?></th> 
+                                                <th><select><option><?php  echo $row['Nombre']?></option></select></th> 
+                                                <th><a href="../Modificar/Modificar_Proveedor.php?id=<?php echo $row['Rut']?>" class="btn btn-dark">Editar</a></th>
+                                                <th><a href="../SQL/Eliminar_Proveedor.php?id=<?php echo $row['Rut']?>" class="btn btn-danger">Eliminar</a></th>                                        
                                             </tr>
                                         <?php 
                                             }

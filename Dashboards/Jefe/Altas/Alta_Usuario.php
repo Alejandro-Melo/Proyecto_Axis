@@ -292,7 +292,7 @@
                   </div>
                   <?php
       include_once("../../../conexion.php");
-      include("../SQL/Alta_Usuario.php");
+      include("../../../SQL/Alta_Usuario.php");
       if(isset($_POST['submit'])){
         if(isset($_POST['email']) && isset($_POST['select']) && isset($_POST['contra'])){
             $email = $_POST["email"];

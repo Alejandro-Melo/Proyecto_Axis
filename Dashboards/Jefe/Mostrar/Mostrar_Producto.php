@@ -285,7 +285,7 @@
                                 <tbody>
                                         <?php
                                             include("../../../conexion.php");
-                                        
+                                            
                                             $sql="SELECT *, producto.Nombre As Nombre_Producto, proveedor.Nombre As Nombre_Proveedor FROM producto 
                                             INNER JOIN proveedor ON producto.ID_Proveedor = proveedor.ID_Proveedor;";
                                             $query=mysqli_query($conexion,$sql);
