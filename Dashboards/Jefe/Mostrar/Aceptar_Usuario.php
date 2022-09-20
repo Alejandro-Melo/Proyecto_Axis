@@ -284,7 +284,7 @@
                                         <?php
                                             include("../../../conexion.php");
                                         
-                                            $sql="SELECT * FROM Usuario WHERE Activo = false";
+                                            $sql="SELECT * FROM Usuario WHERE Activo = false AND Tipo_usuario = 'Cliente'";
                                             $query=mysqli_query($conexion,$sql);
                                         
                                             $row=mysqli_fetch_array($query);
