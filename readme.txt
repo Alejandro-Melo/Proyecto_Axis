@@ -1,1 +1,0 @@
-Por desgracia, el Backup no ha funcionado debido a unos problemas los cuales no pudimos solucionar con los permisos de SISRDadmin. No sabemos qué es lo que pasa, y para la 3ra entrega, lo solucionaremos con usted. Saludos.

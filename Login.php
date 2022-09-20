@@ -22,14 +22,15 @@
       <td><input name="Email" type="text" class="Input"></td>
     </tr>
     <tr>
-      <td align="right">Password</td>
-      <td><input name="Password" type="password" class="Input"></td>
+      <td align="right">Contraseña</td>
+      <td><input name="Contrasenia" type="Password" class="Input"></td>
     </tr>
     <tr>
       <td> </td>
       <td><input name="Submit" type="submit" value="Login" class="Button3"></td>
     </tr>
   </table>
+  <a href="Register.php">¿Todavía no te has registrado? Registrate aquí</a>
 </form>
 
 <?php session_start();
@@ -38,11 +39,11 @@
 
         if(isset($_POST['Submit'])){
                 
-                if( isset($_POST['Email']) || isset($_POST['Password'])){
-                $_SESSION['User']['Email'] = $_POST['Email'];
-                $_SESSION['User']['Password'] = $_POST['Password'];
+                if( isset($_POST['Email']) || isset($_POST['Contrasenia'])){
+                $Email = $_SESSION['User']['Email'] = $_POST['Email'];
+                $Contrasenia = $_SESSION['User']['Contrasenia'] = hash('sha256', $_POST['Contrasenia']);
 
-                $type = User_type($_SESSION['User']['Email'], $_SESSION['User']['Password'], $conexion);
+                $type = User_type($Email, $Contrasenia, $conexion);
 
                 } else{
                   echo "<h1>Ha ingresado algunos de los datos incorrectamante, o no existen.</h1>";
@@ -61,8 +62,13 @@
                         header("Location: Dashboards/dashboard_comprador.html");
                         break;  
                     
-                    case 'Usuario':
-                        header("Location: Usuario.html");
+                    case 'Cliente':
+                        if(Is_Active($Email, $Contrasenia, $conexion)){
+                          header("Location: Usuario.html");
+                        }else{
+                          header("Location: Login.php");
+                          echo "Su usuario no ha sido confirmado";
+                        }
                         break;
                         
                     default:
@@ -76,9 +82,9 @@
                   }
 
             }
-                function User_type ($Email, $Password, $conexion) {
+                function User_type ($Email, $Contrasenia, $conexion) {
                   
-                  $sql = "SELECT * FROM usuario WHERE Email = '$Email' AND Contrasenia = '$Password'";
+                  $sql = "SELECT * FROM usuario WHERE Email = '$Email' AND Contrasenia = '$Contrasenia'";
                   $query = mysqli_query($conexion, $sql);
                   
                   $row = mysqli_fetch_array($query);
@@ -89,10 +95,22 @@
                   }
                 
                   }
+                  
+                function Is_Active ($Email, $Contrasenia, $conexion){
+                  
+                  $sql = "SELECT * FROM usuario WHERE Email = '$Email' AND Contrasenia = '$Contrasenia'";
+                  $query = mysqli_query($conexion, $sql);
+                  $row = mysqli_fetch_array($query);
+                  
+                  if($row['Activo'] == true){
+                  return true;
+                  } else {
+                    return false;
+                  }
+                }
                 
-
-
-
+                  
+                
 ?>
 
 </body>
