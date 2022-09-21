@@ -298,7 +298,7 @@
                       </div>
                       <div class="col-md-3 m-1">
                         <label for="telefonos" class="form-label">Telefonos</label>
-                        <select class="form-control" name="Tel_Sel" id="Tel_Sel">
+                        <select class="form-control" name="Tel_Sel[]" id="Tel_Sel" multiple>
                         <input type="hidden" id="result" name="Telefonos_Insert"/>
                         </select>
                     </div>
@@ -310,21 +310,17 @@
                 </div>
                           <?php
               include_once("../../../conexion.php");
-              include("../../../SQL/Alta_Proveedor.php");
-              $Telefonos = [];
-              if(Isset($_POST['Agregar_T'])){
-                $Telefonos[] = $_POST['Telefonos_Insert'];
-              }
+              include("../SQL/Alta_Proveedor.php");
+              
               if(isset($_POST['submit'])){
                 if(isset($_POST['Direccion']) && isset($_POST['Nombre']) && isset($_POST['Rut'])){
                   $Direccion = $_POST['Direccion'];
                   $Nombre = $_POST['Nombre'];
                   $Rut = $_POST['Rut'];
-
+                  $Telefonos = $_POST['Tel_Sel'];
+                  $Tel = implode("-", $Telefonos);
                   Alta_Proveedor($Direccion, $Nombre, $Rut, $conexion);
-                  foreach ($Telefonos as $tel) {
-                    Asignar_Telefonos($Rut, $tel, $conexion);
-                  }  
+                  Asignar_Telefonos($Rut, $Tel, $conexion);
          
                 } else{
                   echo "<script> alert('No ha ingresado uno de los datos') </script>";
@@ -351,6 +347,7 @@
           $('#Tel_Sel').append($('<option>', {value:Telefono, text:Telefono}));
           var num = $('#Tel_Sel option').length;
           $('#Tel_Sel').prop('selectedIndex', num-1)
+          $('#Tel_Sel option').prop('selected', true);
         }
       });
     });

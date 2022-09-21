@@ -265,7 +265,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Mostrar Usuarios</h1>
+            <h1>Verificar Clientes</h1>
             <div class="col-md-8">
                             <table class="table" >
                                 <thead class="table-light table-striped" >

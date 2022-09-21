@@ -317,7 +317,7 @@
               if(!$uppercase || !$lowercase || !$number || strlen($_POST['contra']) < 8) {
               echo '<h6 class="m-1"> La contraseña no es lo suficientemente fuerte </h6>';
               } else{
-                $contra = $_POST['contra'];
+                $contra = hash('sha256', $_POST['contra']);
                 Alta_SQL($tipo_usuario, $contra, $email, $conexion);
               }
           } else{

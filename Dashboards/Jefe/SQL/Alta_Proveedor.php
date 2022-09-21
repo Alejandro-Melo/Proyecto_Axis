@@ -17,6 +17,6 @@ VALUES ('$Rut', '$Telefonos');";
 
 mysqli_query($conexion, $sql);
 
-$conexion->close();
+
 }
 ?>

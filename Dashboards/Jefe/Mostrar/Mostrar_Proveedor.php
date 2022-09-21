@@ -283,18 +283,24 @@
                                         <?php
                                             include("../../../conexion.php");
                                         
-                                            $sql="SELECT * FROM Proveedor " ;
+                                            $sql="SELECT * FROM Proveedor INNER JOIN Proveedor_Telefonos ON Proveedor.Rut = Proveedor_Telefonos.Rut" ;
                                             $query=mysqli_query($conexion,$sql);
-                                        
+
                                             $row=mysqli_fetch_array($query);
 
                                             while($row=mysqli_fetch_array($query)){
+                                            $options = "";
+                                            $Telefonos = explode("-", $row[4]);
+
+                                            foreach ($Telefonos as $tel) {
+                                              $options .= "<option value=$tel>$tel</option>";
+                                            }
                                         ?>
                                             <tr>
                                                 <th><?php  echo $row['Rut']?></th> 
                                                 <th><?php  echo $row['Direccion']?></th>
                                                 <th><?php  echo $row['Nombre']?></th> 
-                                                <th><select><option><?php  echo $row['Nombre']?></option></select></th> 
+                                                <th><select><?php echo $options ?></select></th> 
                                                 <th><a href="../Modificar/Modificar_Proveedor.php?id=<?php echo $row['Rut']?>" class="btn btn-dark">Editar</a></th>
                                                 <th><a href="../SQL/Eliminar_Proveedor.php?id=<?php echo $row['Rut']?>" class="btn btn-danger">Eliminar</a></th>                                        
                                             </tr>
