@@ -283,7 +283,7 @@
                                         <?php
                                             include("../../../conexion.php");
                                         
-                                            $sql="SELECT * FROM Usuario";
+                                            $sql="SELECT * FROM Usuario WHERE Activo = 1";
                                             $query=mysqli_query($conexion,$sql);
                                         
                                             $row=mysqli_fetch_array($query);

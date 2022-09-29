@@ -280,7 +280,7 @@
                         <select class="form-select" name="Proveedor" id="">
                         <?php 
                                 include("../../../conexion.php");
-                                include("../../../SQL/Alta_Producto.php");
+                                include("../SQL/Alta_Producto.php");
 
                                 $query = "SELECT * FROM `proveedor`";
 
@@ -306,13 +306,29 @@
                         <label for="inputEmail4" class="form-label">Unidades Inciales</label>
                         <input type="number" class="form-control" name="Cant_stock" id="inputEmail4">
                     </div>
-                    
-                </div>
+                    <div class="col-md-6">
+                        <br>
+                        <label class="form-label" for="customFile">Ingrese imagenes del producto</label>
+                        <input type="file" class="form-control" name="Imagenes" id="Imagenes" />
+                        
+                    </div>
+                    <div class="col-md-3">
+                        <br>
+                        <input type="button" value="Agregar" name="Agregar" class="btn btn-primary">
+                        <input type="button" value="Eliminar" name="Eliminar" class="btn btn-primary">
+                        <?php
+
+                        ?>
+                    </div>
+                  </div>
                   <div class="col-auto m-1">
+                    <br>
                     <input type="submit" value="Crear" name="submit" class="btn btn-primary">
                   </div>
 
                   <?php
+      
+
       if(isset($_POST['submit'])){
         if(isset($_POST['Nombre']) && isset($_POST['Precio']) && isset($_POST['Descripcion']) && isset($_POST['Proveedor']) && isset($_POST['Cant_stock'])){
             

@@ -67,7 +67,7 @@
                           header("Location: Usuario.html");
                         }else{
                           header("Location: Login.php");
-                          echo "Su usuario no ha sido confirmado";
+                          echo "<script>alert('Su usuario no ha sido confirmado')</script>";
                         }
                         break;
                         

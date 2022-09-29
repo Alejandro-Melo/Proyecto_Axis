@@ -274,17 +274,15 @@
                                         <th>Tipo de Usuario</th>
                                         <th>Email</th>
                                         <th>Hora de Creación</th>
-                                        <th>Contraseña</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                         <?php
                                             include("../../../conexion.php");
                                         
-                                            $sql="SELECT * FROM Usuario WHERE Activo = false AND Tipo_usuario = 'Cliente'";
+                                            $sql="SELECT * FROM Usuario WHERE Activo = 0 AND Tipo_usuario = 'Cliente'";
                                             $query=mysqli_query($conexion,$sql);
                                         
                                             $row=mysqli_fetch_array($query);
@@ -295,8 +293,7 @@
                                                 <th><?php  echo $row['ID_U']?></th>
                                                 <th><?php  echo $row['Tipo_usuario']?></th>
                                                 <th><?php  echo $row['Email']?></th>
-                                                <th><?php  echo $row['Date_creation']?></th>  
-                                                <th><?php  echo $row['Contrasenia']?></th>   
+                                                <th><?php  echo $row['Date_creation']?></th> 
                                                 <th><a href="../SQL/Habilitar_Cliente.php?id=<?php echo $row['ID_U']?>" class="btn btn-dark">Aceptar</a></th>
                                                 <th><a href="../SQL/Eliminar_Usuario.php?id=<?php echo $row['ID_U']?>" class="btn btn-danger">Eliminar</a></th>                                        
                                             </tr>

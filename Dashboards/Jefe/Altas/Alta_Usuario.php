@@ -275,16 +275,16 @@
                         <label for="inputcontra4" class="form-label">Tipo de Usuario</label>
                         <select class="form-select" name="select" id="">
                           
-                            <option value="1">Jefe</option>
                             <option value="2">Comprador</option>
                             <option value="3">Vendedor</option>
+                            <option value="1">Jefe</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 m-1">
                         <label for="inputAddress" class="form-label">Contraseña</label>
-                        <input type="text" class="form-control" name="contra" id="inputAddress">
+                        <input type="password" class="form-control" name="contra" id="inputAddress">
                     </div>
                   </div>
                   <div class="col-auto m-2">
@@ -297,10 +297,11 @@
         if(isset($_POST['email']) && isset($_POST['select']) && isset($_POST['contra'])){
             $email = $_POST["email"];
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-              $emailErr = "Invalid email format";
-            }  
+              echo "No es un email válido";
+            } 
+            
             $tipo_usuario = "";
-
+            
             switch($_POST['select']){
                 case 1: $tipo_usuario = "Jefe";
                 break;

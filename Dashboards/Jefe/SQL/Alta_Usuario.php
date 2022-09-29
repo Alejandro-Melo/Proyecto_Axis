@@ -16,7 +16,7 @@ if($row == 0){
     mysqli_query($conexion, $sql);
     
 } else{
-    echo "<h1>El usuario ya existe.</h1>";
+    echo "<script>alert('El Usuario ya existe.')</script>";
 }
 
 $conexion->close();

@@ -321,7 +321,6 @@
                   $Tel = implode("-", $Telefonos);
                   Alta_Proveedor($Direccion, $Nombre, $Rut, $conexion);
                   Asignar_Telefonos($Rut, $Tel, $conexion);
-         
                 } else{
                   echo "<script> alert('No ha ingresado uno de los datos') </script>";
                 }
@@ -339,7 +338,7 @@
     
     var Telefonos = [];
       $("#Agregar").click(function(){
-        Telefono = $("#Telefono").val();
+        let Telefono = $("#Telefono").val();
       $.ajax({
         method: "POST",
         data: {Telefonos: Telefono},

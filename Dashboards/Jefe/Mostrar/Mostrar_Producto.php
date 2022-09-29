@@ -287,8 +287,9 @@
                                             include("../../../conexion.php");
 
                                             $sql="SELECT *, producto.Nombre As Nombre_Producto, proveedor.Nombre As Nombre_Proveedor FROM producto 
-                                            INNER JOIN proveedor ON producto.ID_Proveedor = proveedor.ID_Proveedor;";
+                                            INNER JOIN proveedor ON producto.Rut = proveedor.Rut";
                                             $query=mysqli_query($conexion,$sql);
+                                            
                                             $row=mysqli_fetch_array($query);
 
                                             while($row=mysqli_fetch_array($query)){
