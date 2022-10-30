@@ -265,7 +265,7 @@
         <div class="row">
           <div class="col-md-12">
             <h1>Crear Producto</h1>
-            <form class="row g-3 m-1" method="post">
+            <form class="row g-3 m-1" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-3">
                         <label for="inputEmail4" class="form-label">Nombre</label>
@@ -297,7 +297,7 @@
                             <?php echo $options;?>
                         </select>
                     </div>
-                    <div class="form-group col-lg-6 col-sm-12">
+                    <div class="form-group col-lg-4 col-sm-12">
                         <label for="exampleFormControlTextarea1">Descripción</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Descripcion"></textarea>
                     </div>
@@ -306,20 +306,13 @@
                         <label for="inputEmail4" class="form-label">Unidades Inciales</label>
                         <input type="number" class="form-control" name="Cant_stock" id="inputEmail4">
                     </div>
-                    <div class="col-md-6">
-                        <br>
-                        <label class="form-label" for="customFile">Ingrese imagenes del producto</label>
-                        <input type="file" class="form-control" name="Imagenes" id="Imagenes" />
-                        
-                    </div>
                     <div class="col-md-3">
                         <br>
-                        <input type="button" value="Agregar" name="Agregar" class="btn btn-primary">
-                        <input type="button" value="Eliminar" name="Eliminar" class="btn btn-primary">
-                        <?php
-
-                        ?>
+                        <label class="form-label" for="customFile">Ingrese imagenes del producto</label>
+                        <input type="file" class="form-control" name="files[]" id="files" multiple/>
+                        
                     </div>
+                    
                   </div>
                   <div class="col-auto m-1">
                     <br>
@@ -350,13 +343,78 @@
             
             $Proveedor = $_POST['Proveedor'];
 
-            Alta_Producto($Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $conexion);
+            // Configure upload directory and allowed file types
+            $upload_dir = 'uploads';
+            $allowed_types = array('jpg', 'png', 'jpeg', 'gif');
+            
+            // Define maxsize for files i.e 2MB
+            $maxsize = 100 * 1024 * 1024;
+        
+            // Checks if user sent an empty form
+            if(!empty(array_filter($_FILES['files']['name']))) {
+        
+                // Loop through each file in files[] array
+                foreach ($_FILES['files']['tmp_name'] as $key => $value) {
+                    
+                    $file_tmpname = $_FILES['files']['tmp_name'][$key];
+                    $file_name = $_FILES['files']['name'][$key];
+                    $file_size = $_FILES['files']['size'][$key];
+                    $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+        
+                    // Set upload file path
+                    $filepath = $upload_dir."/".$file_name;
+        
+                    // Check file type is allowed or not
+                    if(in_array(strtolower($file_ext), $allowed_types)) {
+        
+                        // Verify file size - 10MB max
+                        if ($file_size < $maxsize){        
+                            
+                        // If file with name already exist then append time in
+                        // front of name of the file to avoid overwriting of file
+                        if(file_exists("../../../".$filepath)) {
+                            $filepath = $upload_dir."/".time().$file_name;
+                            
+                            if( move_uploaded_file($file_tmpname, "../../../".$filepath)) {
+                                echo "{$file_name} successfully uploaded <br />";
+                            }
+                            else {                    
+                                echo "Error subiendo {$file_name} <br />";
+                            }
+                        }
+                        else {
+                        
+                            if(move_uploaded_file($file_tmpname, "../../../".$filepath)){
+                                echo "{$file_name} successfully uploaded <br />";
+                            }
+                            else {                    
+                                echo "Error subiendo {$file_name} <br />";
+                            }
+                        }
+                    } else {
+                      echo "Excedió el máximo";
+                    }
+                  } else {
+                        
+                        // If file extension not valid
+                        echo "Error uploading {$file_name} ";
+                        echo "({$file_ext} file type is not allowed)<br / >";
+                    }
+                    echo $filepath;
+                    Alta_Producto($Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $filepath, $conexion);
+                }
 
-          } else {
+            
+          }
+          }  
+            else {
             echo "<h1>No ha ingresado uno de los datos</h1>";
           }
+
+         
         }
-    ?>
+
+    ?>  
                 </div>
                 </div>
             </form>
