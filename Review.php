@@ -203,7 +203,7 @@ session_start();?>
 
             <div class="col-md-6">
               <label for="cc-number" class="form-label">Número de tarjeta</label>
-              <input type="text" name="Num_Tarjeta" class="form-control" id="cc-number" placeholder="" required>
+              <input type="text" name="Num_Tarjeta" minlength=16 maxlength=16 class="form-control" id="cc-number" placeholder="" required>
             </div>
 
             <div class="col-md-3">
@@ -213,7 +213,7 @@ session_start();?>
 
             <div class="col-md-3">
               <label for="cc-cvv" class="form-label">CVV</label>
-              <input type="text" name="CVV" class="form-control" id="cc-cvv" placeholder="" required>
+              <input type="text" name="CVV" maxlength=3 class="form-control" id="cc-cvv" placeholder="" required>
             </div>
           </div>
 
@@ -237,15 +237,12 @@ session_start();?>
            ?>
   </div>
   </main>
-<footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">© 2022 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
-</div>
+  <footer class="my-5 pt-5 mt-auto text-muted text-center text-small">
+      <p class="mb-1">© 2022 Axis</p>
+      <ul class="list-inline">
+      </ul>
+    </footer>
+
     <!-- End your project here-->
 
     <!-- MDB -->

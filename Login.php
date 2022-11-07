@@ -74,7 +74,6 @@ session_start();
       <!-- Left links -->
 
       <div class="d-flex align-items-center">
-        <a href="" class="text-white px-3 me-2">Contacto</a>
         <a type="button" href="Login.php" class="btn btn-primary px-3 me-2">
           Login
         </a>
@@ -115,7 +114,7 @@ session_start();
 
                 <div class="d-flex justify-content-center">
                   <button type="submit"
-                    class="btn btn-link btn-block btn-lg gradient-custom-4 text-white" name="Submit">¡Registrar!</button>
+                    class="btn btn-link btn-block btn-lg gradient-custom-4 text-white" name="Submit">Iniciar Sesión</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">¿No tenés una cuenta? <a href="Register.php"

@@ -78,7 +78,6 @@
   <?php 
     if(count($_SESSION) == 0){ ?>
       <div class="d-flex align-items-center">
-        <a href="" class="text-white px-3 me-2">Contacto</a>
         <a type="button" href="Login.php" class="btn btn-primary px-3 me-2">
           Login
         </a>
@@ -90,7 +89,6 @@
     <?php } else{
       ?>
       <div class="d-flex align-items-center">
-        <a href="" class="text-white px-3 me-2">Contacto</a>
         <a type="button" href="Review.php" class="btn px-3 bg-white me-2"><i class="fas fa-shopping-cart"></i></i>
         </a>
         <a type="button" href="Logout.php" class="btn btn-primary bg-white text-black me-3">
@@ -199,9 +197,8 @@
                               if(isset($_GET['Busqueda_Submit'])){
                                 
                                 $busqueda = $_GET['Busqueda'];
-
-
-                                $sql="SELECT * FROM `producto` WHERE nombre like '%$busqueda%'";
+                           
+                                $sql="SELECT * FROM `producto` WHERE Nombre like '%$busqueda%'";
                                 
                                 $query=mysqli_query($conexion,$sql);
 
@@ -213,7 +210,7 @@
             <div class="col-lg-4 col-md-12 mb-4">
               <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="<?php echo $row['IMG']?>" style=width="300" height="300" class="img-fluid"/>
+                  <img src="<?php echo $row['IMG']?>" style=width="300" height="300" class="img"/>
                   <a href='Producto.php?id=<?php echo $row['ID_Producto']?>'>
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                   </a>
@@ -223,6 +220,7 @@
                   <p class="card-text text-black">$<?php echo $row['Precio']?></p>
                   <div class="d-flex justify-content-center">
                     <form action="Aniadir_carrito.php?id=<?php echo $row['ID_Producto']?>" method="post">
+                    
                     <input class="form-control text-center me-3" id="inputQuantity" type="num" name="Cantidad_Producto" value="1" style="max-width: 3rem" />
                     <button type="submit" class="btn btn-outline-primary flex-shrink-0">
                         <i class="bi-cart-fill me-1"></i>
@@ -233,7 +231,43 @@
                 </div>
               </div>
             </div>
-            <?php } } ?>
+            <?php } } else{
+
+  $sql="SELECT * FROM `producto`";
+  
+  $query=mysqli_query($conexion,$sql);
+
+  $row=mysqli_fetch_array($query);
+
+  while($row=mysqli_fetch_array($query)){
+
+   ?>  
+            <div class="col-lg-4 col-md-12 mb-4">
+            <div class="card">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img src="<?php echo $row['IMG']?>" style=width="300" height="300" class="img"/>
+            <a href='Producto.php?id=<?php echo $row['ID_Producto']?>'>
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+            </div>
+            <div class="card-body">
+            <h4 class="card-title"><?php echo $row['Nombre']?></h4>
+            <p class="card-text text-black">$<?php echo $row['Precio']?></p>
+            <div class="d-flex justify-content-center">
+            <form action="Aniadir_carrito.php?id=<?php echo $row['ID_Producto']?>" method="post">
+
+            <input class="form-control text-center me-3" id="inputQuantity" type="num" name="Cantidad_Producto" value="1" style="max-width: 3rem" />
+            <button type="submit" class="btn btn-outline-primary flex-shrink-0">
+            <i class="bi-cart-fill me-1"></i>
+            ¡Añadir al Carrito!
+            </button>
+            </form>
+            </div>
+            </div>
+            </div>
+            </div>
+
+         <?php  } } ?>
           </div>
           
         </section>

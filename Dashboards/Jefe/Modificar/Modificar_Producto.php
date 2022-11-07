@@ -18,14 +18,14 @@
     <!-- top navigation bar -->
     <?php include("../Componente/Sidebar.php");
           include("../../../conexion.php");
-          include("../SQL/Alta_Producto.php");
+          include("../SQL/Modificar_Producto.php");
 
     ?>
 
     <?php 
      $ID_Producto = $_GET['id'];
      
-     $sql = "SELECT * from producto where ID_Producto = '$ID_Producto'";
+     $sql = "SELECT * from `producto` where ID_Producto = '$ID_Producto'";
      $query = mysqli_query($conexion, $sql);
      while($row=mysqli_fetch_array($query)){
     ?>
@@ -33,7 +33,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Crear Producto</h1>
+            <h1>Modificar Producto</h1>
             <form class="row g-3 m-1" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-3">
@@ -50,9 +50,9 @@
                         
                         <?php 
                            
-                                $query = "SELECT * FROM `proveedor`";
+                                $query2 = "SELECT * FROM `proveedor`";
 
-                                $proveedores = mysqli_query($conexion, $query);
+                                $proveedores = mysqli_query($conexion, $query2);
 
                                 $options = "";
 
@@ -62,43 +62,27 @@
                                 }
 
                                 ?>
-                            <?php echo $options;?>
+                            <?php echo $options;
+                            ?>
                         </select>
                     </div>
                     <div class="form-group col-lg-4 col-sm-12">
                         <label for="exampleFormControlTextarea1">Descripción</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $row['Descripcion']?>" name="Descripcion"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $row['Descripcion'];?>" name="Descripcion"></textarea>
                     </div>
                     <div class="col-md-3">
                         <br>
                         <label for="inputEmail4" class="form-label">Unidades Inciales</label>
-                        <input type="number" class="form-control" name="Cant_stock" value="<?php echo $row['Cantidad_Stock']?>" id="inputEmail4">
+                        <input type="number" class="form-control" min="0" name="Cant_stock" value="<?php echo $row['Cantidad_Stock'];?>" id="inputEmail4">
                     </div>
                     <div class="col-md-3">
                         <br>
                         <label class="form-label" for="customFile">Ingrese imagenes del producto</label>
-                        <input type="file" class="form-control" name="files[]" id="files" multiple/>
+                        <input type="file" class="form-control" name="files[]" id="files" value="<?php echo $row['IMG'];?>" multiple/>
                     </div>
                     <div class="col-md-3">
-                      <label class="form-label" for="form-label">Categoria</label>
-                      <select name="Categoria" id="Categoria" class="form-control"> 
-                        <?php $query = "SELECT * FROM `categoria`";
-
-                          $categoria = mysqli_query($conexion, $query);
-
-                          $options = "";
-
-                          while($row = mysqli_fetch_array($categoria))
-                          {
-                              $options .= "<option value='$row[0]'>$row[1]</option>";
-                          }
-
-                          ?>
-                          <?php echo $options;?>
-                      </select>
-                    </div>
-                    <div class="col-md-3" id="Talle">
-                      
+                      <label class="form-label" for="form-label">Descuento</label>
+                      <input type="number" min=0 max=100 name="Descuento" class="form-control" id="descuento">
                     </div>
                     
                   </div>
@@ -108,10 +92,11 @@
                   </div>
 
                   <?php
+     }
      
 
       if(isset($_POST['submit'])){
-        if(isset($_POST['Nombre']) && isset($_POST['Precio']) && isset($_POST['Descripcion']) && isset($_POST['Proveedor']) && isset($_POST['Cant_stock']) && isset($_POST['Categoria'])){
+        if(isset($_POST['Nombre']) && isset($_POST['Precio']) && isset($_POST['Descripcion']) && isset($_POST['Proveedor']) && isset($_POST['Cant_stock']) && isset($_POST['Descuento'])){
             
             $Nombre = $_POST['Nombre'];
             
@@ -123,13 +108,13 @@
 
             $Descripcion = $_POST['Descripcion'];
 
+            $Descuento = $_POST['Descuento'];
+
             if($_POST['Cant_stock'] > 0){
                 $Cant_stock = $_POST['Cant_stock'];
             } else{
               echo "El valor para Cantidad de Stock ingresado es invalido.";
             }
-            
-            $categoria = $_POST['Categoria'];
 
             $Proveedor = $_POST['Proveedor'];
 
@@ -166,7 +151,7 @@
                             $filepath = $upload_dir."/".time().$file_name;
                             
                             if( move_uploaded_file($file_tmpname, "../../../".$filepath)) {
-                                echo "{$file_name} successfully uploaded <br />";
+                           
                             }
                             else {                    
                                 echo "Error subiendo {$file_name} <br />";
@@ -175,7 +160,7 @@
                         else {
                         
                             if(move_uploaded_file($file_tmpname, "../../../".$filepath)){
-                                echo "{$file_name} successfully uploaded <br />";
+                               
                             }
                             else {                    
                                 echo "Error subiendo {$file_name} <br />";
@@ -190,8 +175,7 @@
                         echo "Error uploading {$file_name} ";
                         echo "({$file_ext} file type is not allowed)<br / >";
                     }
-                    echo $filepath;
-                    Alta_Producto($Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $categoria, $filepath, $conexion);
+                    Modificar_Producto($ID_Producto,$Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $filepath, $Descuento, $conexion);
                 }
 
             
@@ -203,7 +187,7 @@
 
          
         }
-    }
+        
 
     ?>  
                 </div>

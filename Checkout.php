@@ -33,7 +33,6 @@ $query_info = mysqli_query($conexion, $sql_info);
 $PedidoInfo_ID = mysqli_insert_id($conexion);
 
 
-
 $sql_rel_PedidoInfo = "INSERT INTO `pedido_pedidoinfo` Values($Pedido_ID, $PedidoInfo_ID);";
 
 $query_pedido_info = mysqli_query($conexion, $sql_rel_PedidoInfo);
@@ -47,6 +46,14 @@ foreach ($_SESSION['User']['Compra']['Producto'] as $Producto => $Prod) {
 
     $query=mysqli_query($conexion, $sql);
     
+    $sq2 = "UPDATE producto SET Ventas = Ventas + $Cantidad[$i], Cantidad_Stock = Cantidad_Stock - $Cantidad[$i], Ult_Compra = CURRENT_TIMESTAMP() Where ID_Producto = '$Prod'";
+
+    $query2=mysqli_query($conexion, $sq2);
+
+    $sql3 = "UPDATE usuario SET Cant_compras = Cant_compras + $Cantidad[$i] Where ID_U = $ID";
+
+    $query3=mysqli_query($conexion, $sql3);
+
     $i++;
 }
 

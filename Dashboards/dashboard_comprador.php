@@ -16,8 +16,7 @@
   </head>
   <body>
     <!-- top navigation bar -->
-      </div>
-    </div>
+      <?php include("Jefe/Componente/Sidebar_comprador.php") ?>
     <!-- offcanvas -->
     <main class="mt-5 pt-3">
       <div class="container-fluid">

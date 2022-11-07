@@ -12,7 +12,7 @@ if(is_array($_SESSION['User']['Compra']['Cantidad_Producto']) == false){
     $_SESSION['User']['Compra']['Cantidad_Producto'] = array();
     }
 
-if(count($_SESSION) != 0){
+if(count($_SESSION) != 0 || !is_array($_SESSION['User']['Tipo_Usuario'])){
 
     if(!in_array($id, $_SESSION['User']['Compra']['Producto'])){
         array_push($_SESSION['User']['Compra']['Producto'], $id);

@@ -70,38 +70,21 @@
                         <input type="file" class="form-control" name="files[]" id="files" multiple/>
                     </div>
                     <div class="col-md-3">
-                      <label class="form-label" for="form-label">Categoria</label>
-                      <select name="Categoria" id="Categoria" class="form-control"> 
-                        <?php $query = "SELECT * FROM `categoria`";
-
-                          $categoria = mysqli_query($conexion, $query);
-
-                          $options = "";
-
-                          while($row = mysqli_fetch_array($categoria))
-                          {
-                              $options .= "<option value='$row[0]'>$row[1]</option>";
-                          }
-
-                          ?>
-                          <?php echo $options;?>
-                      </select>
-                    </div>
-                    <div class="col-md-3" id="Talle">
-                      
-                    </div>
-                    
+                      <label class="form-label" for="form-label">Descuento</label>
+                      <input type="number" min=0 max=100  class="form-control " name="Descuento" id="descuento">
                   </div>
+
+        
                   <div class="col-auto m-1">
                     <br>
                     <input type="submit" value="Crear" name="submit" class="btn btn-primary">
                   </div>
-
+                  </form>
                   <?php
      
 
       if(isset($_POST['submit'])){
-        if(isset($_POST['Nombre']) && isset($_POST['Precio']) && isset($_POST['Descripcion']) && isset($_POST['Proveedor']) && isset($_POST['Cant_stock']) && isset($_POST['Categoria'])){
+        if(isset($_POST['Nombre']) && isset($_POST['Precio']) && isset($_POST['Descripcion']) && isset($_POST['Proveedor']) && isset($_POST['Cant_stock']) && isset($_POST['Descuento'])){
             
             $Nombre = $_POST['Nombre'];
             
@@ -113,13 +96,13 @@
 
             $Descripcion = $_POST['Descripcion'];
 
+            $Descuento = $_POST['Descuento'];
+
             if($_POST['Cant_stock'] > 0){
                 $Cant_stock = $_POST['Cant_stock'];
             } else{
               echo "El valor para Cantidad de Stock ingresado es invalido.";
             }
-            
-            $categoria = $_POST['Categoria'];
 
             $Proveedor = $_POST['Proveedor'];
 
@@ -165,7 +148,7 @@
                         else {
                         
                             if(move_uploaded_file($file_tmpname, "../../../".$filepath)){
-                                echo "{$file_name} successfully uploaded <br />";
+                                
                             }
                             else {                    
                                 echo "Error subiendo {$file_name} <br />";
@@ -180,12 +163,10 @@
                         echo "Error uploading {$file_name} ";
                         echo "({$file_ext} file type is not allowed)<br / >";
                     }
-                    echo $filepath;
-                    Alta_Producto($Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $categoria, $filepath, $conexion);
+                    Alta_Producto($Nombre, $Precio, $Descripcion, $Proveedor, $Cant_stock, $filepath, $Descuento, $conexion);
                 }
+              }
 
-            
-          }
           }  
             else {
             echo "<h1>No ha ingresado uno de los datos</h1>";
