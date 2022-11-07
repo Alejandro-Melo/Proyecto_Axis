@@ -39,3 +39,8 @@ button {
     top: var(--topNavbarHeight);
   }
 }
+
+.card_hover:hover{
+  color: #fff !important; 
+  
+}

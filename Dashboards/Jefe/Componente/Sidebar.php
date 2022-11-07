@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="../css/dataTables.bootstrap5.min.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/styleGeneral.css">
-    <title>Dashboard Jefe</title>
-  </head>
-  <body>
-    <!-- top navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -60,7 +42,7 @@
                 <i class="bi bi-person-fill"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Salir</a></li>
+                <li><a class="dropdown-item" href="../../../Logout.php">Salir</a></li>
               </ul>
             </li>
           </ul>
@@ -106,15 +88,15 @@
               <div class="collapse" id="layouts">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Jefe/Altas/Alta_Usuario.php" class="nav-link px-3">
+                    <a href="../Altas/Alta_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Crear Usuarios</span>
                     </a>
-                    <a href="Jefe/Mostrar/Mostrar_Usuario.php" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Listado de Usuarios</span>
+                      <span>Lista de Usuarios</span>
                     </a>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Mostrar/Aceptar_Usuario.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Aceptar Usuarios</span>
                     </a>
@@ -155,11 +137,11 @@
                       </a>
                       <div class="collapse" id="productos_abm">
                         <ul class="navbar-nav ps-3">
-                          <a href="#" class="nav-link px-3">
+                          <a href="../Altas/Alta_Producto.php" class="nav-link px-3">
                             <span class="me-2"></span>
-                            <span>Agregar Productos</span>
+                            <span>Alta Productos</span>
                           </a>
-                          <a href="#" class="nav-link px-3">
+                          <a href="../Mostrar/Mostrar_Producto.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Listado Productos</span>
                           </a>
@@ -182,11 +164,11 @@
                       </a>
                       <div class="collapse" id="paquetes_abm">
                         <ul class="navbar-nav ps-3">
-                          <a href="#" class="nav-link px-3">
+                          <a href="../Altas/Alta_Paquete.php" class="nav-link px-3">
                             <span class="me-2"></span>
-                            <span>Agregar Paquetes</span>
+                            <span>Alta Paquetes</span>
                           </a>
-                          <a href="#" class="nav-link px-3">
+                          <a href="../Mostrar/Mostrar_Paquete.php" class="nav-link px-3">
                             <span class="me-2"></span>
                             <span>Listado Paquetes</span>
                           </a>
@@ -215,13 +197,13 @@
               <div class="collapse" id="Proveedores">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Altas/Alta_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
                       <span>Agregar Proveedores</span>
                     </a>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Listado Proveedores</span>
+                      <span>Mostrar Proveedores</span>
                     </a>
                   </li>
                 </ul>
@@ -234,7 +216,7 @@
                 href="#Stock"
               >
                 <span class="me-2"><i class="bi bi-file-earmark-bar-graph"></i></i></span>
-                <span>Stock</span>
+                <span>Pedidos</span>
                 <span class="ms-auto">
                   <span class="right-icon">
                     <i class="bi bi-chevron-down"></i>
@@ -244,36 +226,19 @@
               <div class="collapse" id="Stock">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="#" class="nav-link px-3">
+                    <a href="../Mostrar/Mostrar_Pedido.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Ver Stock</span>
+                      <span>Ver Pedido</span>
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
             <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
+
           </ul>
           </ul>
+          
         </nav>
       </div>
     </div>
-    <!-- offcanvas -->
-    <main class="mt-5 pt-3">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-            <h4>Dashboard</h4>
-          </div>
-        </div>
-        <div class="row"> 
-      </div>
-    </main>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="../js/jquery-3.5.1.js"></script>
-    <script src="../js/jquery.dataTables.min.js"></script>
-    <script src="../js/dataTables.bootstrap5.min.js"></script>
-    <script src="../js/script.js"></script>
-  </body>
-</html>

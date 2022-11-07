@@ -24,15 +24,15 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h1>Mostrar Usuarios</h1>
+            <h1>Mostrar Pedido</h1>
             <div class="col-md-8">
                             <table class="table" >
                                 <thead class="table-light table-striped" >
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tipo de Usuario</th>
-                                        <th>Email</th>
-                                        <th>Hora de Creación</th>
+                                        <th>Estado</th>
+                                        <th>Fecha de realización</th>
+                                        <th>Importe</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -42,18 +42,18 @@
                                         <?php
                                             include("../../../conexion.php");
                                         
-                                            $sql="SELECT * FROM Usuario WHERE Activo = 1";
+                                            $sql="SELECT * FROM Pedido";
                                             $query=mysqli_query($conexion,$sql);
 
                                             while($row=mysqli_fetch_array($query)){
                                         ?>
                                             <tr>
-                                                <th><?php  echo $row['ID_U']?></th>
-                                                <th><?php  echo $row['Tipo_usuario']?></th>
-                                                <th><?php  echo $row['Email']?></th>
-                                                <th><?php  echo $row['Date_creation']?></th>    
-                                                <th><a href="../Modificar/Modificar_Usuario.php?id=<?php echo $row['ID_U']?>" class="btn btn-dark">Editar</a></th>
-                                                <th><a href="../SQL/Eliminar_Usuario.php?id=<?php echo $row['ID_U']?>" class="btn btn-danger">Eliminar</a></th>                                        
+                                                <th><?php  echo $row['ID_Pedido']?></th>
+                                                <th><?php  echo $row['Estado']?></th>
+                                                <th><?php  echo $row['Fecha_pe']?></th>
+                                                <th><?php  echo $row['Importe']?></th>    
+                                                <th><a href="../SQL/Estado_PagoRealizado.php?id=<?php echo $row['ID_Pedido']?>" class="btn btn btn-outline-primary">Enviado</a></th>
+                                                <th><a href="../SQL/Estado_Enviado.php?id=<?php echo $row['ID_Pedido']?>" class="btn btn-outline-primary">Finalizado</a></th>                                        
                                             </tr>
                                         <?php 
                                             }

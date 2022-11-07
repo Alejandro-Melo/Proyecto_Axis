@@ -16,7 +16,19 @@
   </head>
   <body>
     <!-- top navigation bar -->
-    <?php include("../Componente/Sidebar.php");?>
+    <?php include("../Componente/Sidebar.php");
+          include("../../../conexion.php");
+          include("../SQL/Alta_Producto.php");
+
+    ?>
+
+    <?php 
+     $ID_Producto = $_GET['id'];
+     
+     $sql = "SELECT * from producto where ID_Producto = '$ID_Producto'";
+     $query = mysqli_query($conexion, $sql);
+     while($row=mysqli_fetch_array($query)){
+    ?>
     <main class="mt-5 pt-3">
       <div class="container-fluid">
         <div class="row">
@@ -26,20 +38,18 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label for="inputEmail4" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="Nombre" id="inputEmail4">
+                        <input type="text" class="form-control" name="Nombre" value="<?php echo $row['Nombre']?>" id="inputEmail4">
                     </div>
                     <div class="col-md-3">
                         <label for="inputEmail4" class="form-label">Precio</label>
-                        <input type="number" class="form-control" name="Precio" id="inputEmail4">
+                        <input type="number" class="form-control" name="Precio" value="<?php echo $row['Precio']?>" id="inputEmail4">
                     </div>
                     <div class="col-md-3">
                         <label for="inputcontra4" class="form-label">Proveedor</label>
                         <select class="form-select" name="Proveedor" id="Proveedor">
                         
                         <?php 
-                                include("../../../conexion.php");
-                                include("../SQL/Alta_Producto.php");
-
+                           
                                 $query = "SELECT * FROM `proveedor`";
 
                                 $proveedores = mysqli_query($conexion, $query);
@@ -57,12 +67,12 @@
                     </div>
                     <div class="form-group col-lg-4 col-sm-12">
                         <label for="exampleFormControlTextarea1">Descripción</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Descripcion"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $row['Descripcion']?>" name="Descripcion"></textarea>
                     </div>
                     <div class="col-md-3">
                         <br>
                         <label for="inputEmail4" class="form-label">Unidades Inciales</label>
-                        <input type="number" class="form-control" name="Cant_stock" id="inputEmail4">
+                        <input type="number" class="form-control" name="Cant_stock" value="<?php echo $row['Cantidad_Stock']?>" id="inputEmail4">
                     </div>
                     <div class="col-md-3">
                         <br>
@@ -193,6 +203,7 @@
 
          
         }
+    }
 
     ?>  
                 </div>
