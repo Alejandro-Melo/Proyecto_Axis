@@ -103,12 +103,12 @@ session_start();
               <form method="post">
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" name="Email" class="form-control form-control-lg" />
+                  <input type="email" id="form3Example3cg" name="Email" class="form-control form-control-lg" required />
                   <label class="form-label" for="form3Example3cg">Tu Email</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" name="Contrasenia" class="form-control form-control-lg" />
+                  <input type="password" id="form3Example4cg" name="Contrasenia" class="form-control form-control-lg" required />
                   <label class="form-label" for="form3Example4cg">Contraseña</label>
                 </div>
 
@@ -144,7 +144,7 @@ session_start();
                   session_unset();
                 }
                 
-                if(NULL !== $type){
+                if($type !== NULL){
                 
                   switch ($type) {
                     case 'Jefe':
@@ -171,8 +171,10 @@ session_start();
                             ?>
                             <META HTTP-EQUIV="REFRESH" CONTENT="0;URL=index.php">
                             <?php
+                            $_SESSION['User']['Compra']['Producto'] = array();
+                            $_SESSION['User']['Compra']['Cantidad_Producto'] = array();
+                            $_Session['User']['Compra'] = array();
                             $_SESSION['User']['LoggedIn'] = true;
-
                         }else{
                             ?>
                             <script> alert("Su cuenta no está confirmada") </script>

@@ -66,7 +66,7 @@
               </div>
             </li>
             <li>
-              <a href="#" class="nav-link px-3">
+              <a href="dashboard_jefe.php" class="nav-link px-3">
                 <span class="me-2"><i class="bi bi-house"></i></span>
                 <span>Home</span>
               </a>

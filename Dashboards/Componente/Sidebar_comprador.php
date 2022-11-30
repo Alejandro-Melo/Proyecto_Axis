@@ -75,23 +75,48 @@
               <a
                 class="nav-link px-3 sidebar-link"
                 data-bs-toggle="collapse"
-                href="#layouts"
+                href="#products"
               >
-                <span class="me-2"><i class="bi bi-person-fill"></i></span>
-                <span>Usuarios</span>
+                <span class="me-2"><i class="bi bi-bag"></i></span>
+                <span>Productos</span>
                 <span class="ms-auto">
                   <span class="right-icon">
                     <i class="bi bi-chevron-down"></i>
                   </span>
                 </span>
               </a>
-              <div class="collapse" id="layouts">
+              <div class="collapse" id="products">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Jefe/Mostrar/Aceptar_Usuario.php" class="nav-link px-3">
-                      <span class="me-2"></span>
-                      <span>Aceptar Usuarios</span>
-                    </a>
+                    <li>
+                      <a
+                        class="nav-link px-3 sidebar-link"
+                        data-bs-toggle="collapse"
+                        href="#productos_abm"
+                      >
+                        <span class="me-2"></i></span>
+                        <span>Productos</span>
+                        <span class="ms-auto">
+                          <span class="right-icon">
+                            <i class="bi bi-chevron-down"></i>
+                          </span>
+                        </span>
+                      </a>
+                      <div class="collapse" id="productos_abm">
+                        <ul class="navbar-nav ps-3">
+                          <a href="Comprador/Altas/Alta_Producto.php" class="nav-link px-3">
+                            <span class="me-2"></span>
+                            <span>Alta Productos</span>
+                          </a>
+                          <a href="/Comprador/Mostrar/Mostrar_Producto.php" class="nav-link px-3">
+                            <span class="me-2"></span>
+                            <span>Listado Productos</span>
+                          </a>
+                        </ul>
+                      </div>
+                    </li>
+
+                    
                   </li>
                 </ul>
               </div>
@@ -100,22 +125,26 @@
               <a
                 class="nav-link px-3 sidebar-link"
                 data-bs-toggle="collapse"
-                href="#Stock"
+                href="#Proveedores"
               >
-                <span class="me-2"><i class="bi bi-file-earmark-bar-graph"></i></i></span>
-                <span>Pedidos</span>
+                <span class="me-2"><i class="bi bi-truck"></i></i></i></span>
+                <span>Proveedores</span>
                 <span class="ms-auto">
                   <span class="right-icon">
                     <i class="bi bi-chevron-down"></i>
                   </span>
                 </span>
               </a>
-              <div class="collapse" id="Stock">
+              <div class="collapse" id="Proveedores">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="Jefe/Mostrar/Mostrar_Pedido.php" class="nav-link px-3">
+                    <a href="Comprador/Altas/Alta_Proveedor.php" class="nav-link px-3">
                       <span class="me-2"></span>
-                      <span>Ver Pedido</span>
+                      <span>Agregar Proveedores</span>
+                    </a>
+                    <a href="Comprador/Mostrar/Mostrar_Proveedor.php" class="nav-link px-3">
+                      <span class="me-2"></span>
+                      <span>Mostrar Proveedores</span>
                     </a>
                   </li>
                 </ul>

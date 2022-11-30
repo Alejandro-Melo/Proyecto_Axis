@@ -69,7 +69,6 @@
       <!-- Left links -->
 
       <div class="d-flex align-items-center">
-        <a href="" class="text-white px-3 me-2">Contacto</a>
         <a type="button" href="Login.php" class="btn btn-primary px-3 me-2">
           Login
         </a>
@@ -99,17 +98,17 @@
               <form method="POST">
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" name="Email" class="form-control form-control-lg" />
+                  <input type="email" id="form3Example3cg" name="Email" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example3cg">Tu Email</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" name="Contrasenia" class="form-control form-control-lg" />
+                  <input type="password" id="form3Example4cg" name="Contrasenia" class="form-control form-control-lg" required />
                   <label class="form-label" for="form3Example4cg">Contraseña</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" name="C_Contrasenia" class="form-control form-control-lg" />
+                  <input type="password" id="form3Example4cdg" name="C_Contrasenia" class="form-control form-control-lg" required />
                   <label class="form-label" for="form3Example4cdg">Repita Contraseña</label>
                 </div>
 

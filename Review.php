@@ -66,34 +66,13 @@ session_start();?>
         <li class="nav-item">
           <a class="nav-link" href="index.php">Natalia Viera Seguridad</a>
         </li>
+        <li class="nav-item">
+ 
+        </li>
       </ul>
       <!-- Left links -->
-  <?php 
-    if(count($_SESSION) == 0){ ?>
-      <div class="d-flex align-items-center">
-        <a href="" class="text-white px-3 me-2">Contacto</a>
-        <a type="button" href="Login.php" class="btn btn-primary px-3 me-2">
-          Login
-        </a>
-        <a type="button" href="Register.php" class="btn btn-primary bg-white text-black me-3">
-          ¡Registrate!
-        </a>
-        
-      </div>
-    <?php } else{
-      ?>
-      <div class="d-flex m-autoalign-items-center">
-        <a href="" class="text-white px-3 me-2">Contacto</a>
-        <a type="button" href="Review.php" class="btn px-3 bg-white me-2"><i class="fas fa-shopping-cart"></i></i>
-        </a>
-        <a type="button" href="Logout.php" class="btn btn-primary bg-white text-black me-3">
-        <i class="fas fa-sign-out-alt"></i>
-        </a>
-        
-      </div>
-    <?php
-    }
-    ?>
+      
+      <?php include("Logeado.php"); ?>
     <!-- Collapsible wrapper -->
   </div>
   <!-- Container wrapper -->
@@ -103,9 +82,7 @@ session_start();?>
   <main>
     <br>
     <?php 
-    
-    
-    if(isset($_SESSION['User']['Compra'])){?> 
+    if(sizeof($_SESSION['User']['Compra']['Producto']) != 0){?> 
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -126,16 +103,31 @@ session_start();?>
           while($row=mysqli_fetch_array($query)){    
                 
       
-          
-            $Total += $row['Precio']*$_SESSION['User']['Compra']['Cantidad_Producto'][$i];
+            if($row['Descuento'] > 0){
+            $Total += ($row['Precio']-(($row['Precio']*$row['Descuento'])/100))*$_SESSION['User']['Compra']['Cantidad_Producto'][$i];
+            } else{
+              $Total += $row['Precio']*$_SESSION['User']['Compra']['Cantidad_Producto'][$i];
+            }
         ?>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0"><?php echo $row['Nombre']?></h6>
-              <small class="text-muted"><?php echo $row['Precio']?></small>
+              <span>$<?php if($row['Descuento'] > 0){
+                echo ($row['Precio'] - ($row['Precio']*$row['Descuento'])/100); ?>
+              </span><?php }else {  ?>
+              <?php echo  $row['Precio']; ?>
+              </span>
+              <?php } ?>
               
-            </div class="justify-content-center">
-              <span class="text-muted m-auto ">$<?php echo $row['Precio']*$_SESSION['User']['Compra']['Cantidad_Producto'][$i]?></span>
+            </div>
+
+              <span class="text-muted m-auto ">$<?php 
+              if($row['Descuento'] > 0){
+                echo ($row['Precio'] - ($row['Precio']*$row['Descuento'])/100) *$_SESSION['User']['Compra']['Cantidad_Producto'][$i]; ?>
+              </span><?php }else {  ?>
+              <?php echo  $row['Precio']*$_SESSION['User']['Compra']['Cantidad_Producto'][$i]; ?>
+              </span>
+              <?php } ?>
             <div>
             <a href="Eliminar_carrito.php?id=<?php echo $i?>&id_producto=<?php echo $row['ID_Producto']?>" class="btn btn-danger" style="max-width: 5rem"><i class="fas fa-times"></i></a>
             </div>
@@ -148,8 +140,8 @@ session_start();?>
           
             ?>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Total (Pesos)</span>
-            <strong name="Total"><?php echo $Total;?></strong>
+            <span>Total (Pesos Uruguayos)</span>
+            <strong name="Total">$<?php echo $Total;?></strong>
           </li>
         </ul>
       
@@ -219,7 +211,7 @@ session_start();?>
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar con el Pago</button>
         </form>
       </div>
     
@@ -237,12 +229,23 @@ session_start();?>
            ?>
   </div>
   </main>
-  <footer class="my-5 pt-5 mt-auto text-muted text-center text-small">
-      <p class="mb-1">© 2022 Axis</p>
-      <ul class="list-inline">
-      </ul>
+</div>
+<?php 
+    if(count($_SESSION['User']['Compra']['Producto']) != 0 ){?> 
+  <footer class="mt-5">
+    <?php } else { ?> <footer class="mt-5 fixed-bottom"> <?php } ?>
+      <footer class="bg-primary text-center text-white">
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-white" href="https://NataliaVieraSeguridadCorporal.com/">Axis</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
     </footer>
-
+    
     <!-- End your project here-->
 
     <!-- MDB -->

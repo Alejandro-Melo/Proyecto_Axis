@@ -17,7 +17,7 @@ $Num_Tarjeta = $_POST['Num_Tarjeta'];
 $Expire = $_POST['Expire'];
 $CVV = $_POST['CVV'];
 $Total = $_GET['total'];
-$ID = $_SESSION['User']['ID'][0];
+$ID = $_SESSION['User']['ID'];
 $Cantidad = $_SESSION['User']['Compra']['Cantidad_Producto'];
 
 $sql_pedido = "INSERT INTO `pedido` Values(NULL, 'pago_pendiente', CURRENT_TIMESTAMP(), $Total, $ID); ";
@@ -50,7 +50,7 @@ foreach ($_SESSION['User']['Compra']['Producto'] as $Producto => $Prod) {
 
     $query2=mysqli_query($conexion, $sq2);
 
-    $sql3 = "UPDATE usuario SET Cant_compras = Cant_compras + $Cantidad[$i] Where ID_U = $ID";
+    $sql3 = "UPDATE usuario SET Cant_compras = Cant_compras + 1 Where ID_U = $ID";
 
     $query3=mysqli_query($conexion, $sql3);
 
@@ -59,10 +59,8 @@ foreach ($_SESSION['User']['Compra']['Producto'] as $Producto => $Prod) {
 
 }
 
-unset($_SESSION['User']['Compra']);
-
-
-
+$_SESSION['User']['Compra']['Producto'] = [];
+$_SESSION['User']['Compra']['Cantidad_Producto'] = [];
 /*
 if(count($_SESSION['User']['Compra']['Paquete']) != 0){
     foreach ($_SESSION['User']['Compra']['Paquete'] as $Paquete => $Paq) {

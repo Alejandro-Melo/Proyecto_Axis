@@ -68,7 +68,6 @@
       <?php 
     if(count($_SESSION) == 0){ ?>
       <div class="d-flex align-items-center">
-        <a href="" class="text-white px-3 me-2">Contacto</a>
         <a type="button" href="Login.php" class="btn btn-primary px-3 me-2">
           Login
         </a>
@@ -79,8 +78,7 @@
       </div>
     <?php } else{
       ?>
-      <div class="d-flex m-autoalign-items-center">
-        <a href="" class="text-white px-3 me-2">Contacto</a>
+      <div class="d-flex align-items-center">
         <a type="button" href="Review.php" class="btn px-3 bg-white me-2"><i class="fas fa-shopping-cart"></i></i>
         </a>
         <a type="button" href="Logout.php" class="btn btn-primary bg-white text-black me-3">
@@ -178,17 +176,16 @@
                                 <div class="bi-star-fill"></div>
                                 <div class="bi-star-fill"></div>
                                 <div class="bi-star-fill"></div>
-                            </div class>
-                            <!-- Product price-->
+                            </div>
                             <?php if($row['Descuento'] > 0){ ?>
                             <span class="text-muted text-decoration-line-through">$<?php echo $row['Precio']?></span>
-                            <?php echo $row['Precio'] - $row['Precio']*$row['Descuento']/100;; } else{ ?>
-                            <?php echo $row['Precio'];}?>
+                            $<?php echo $row['Precio'] - $row['Precio']*$row['Descuento']/100;; } else{ ?>
+                            $<?php echo $row['Precio'];}?>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="Aniadir_carrito.php?id=<?php echo $id ?>">Add to cart</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="Aniadir_carrito.php?id=<?php echo $id ?>">Ver Producto</a></div>
                     </div>
                 </div>
             </div>
@@ -202,62 +199,15 @@
 
 
 
-
-<div
-    class="p-5 text-center bg-image shadow-1-strong"
-    style="
-      background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
-      height: 500px;
-    "
-  >
+                </div>
     
-    <footer class="mt-5">
+    <footer class="mt-5 aboslute-bottom">
       <footer class="bg-primary text-center text-white">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-          <!-- Section: Form -->
-          <section class="">
-            <form action="">
-              <!--Grid row-->
-              <div class="row d-flex justify-content-center">
-                <!--Grid column-->
-                <div class="col-auto">
-                  <p class="pt-2">
-                    <strong>¡Enterate de todo lo nuevo!</strong>
-                  </p>
-                </div>
-                <!--Grid column-->
-      
-                <!--Grid column-->
-                <div class="col-md-5 col-12">
-                  <!-- Email input -->
-                  <div class="form-outline form-white mb-4">
-                    <input type="email" id="form5Example29" class="form-control" />
-                    <label class="form-label" for="form5Example29">Correo</label>
-                  </div>
-                </div>
-                <!--Grid column-->
-      
-                <!--Grid column-->
-                <div class="col-auto">
-                  <!-- Submit button -->
-                  <button type="submit" class="btn btn-outline-light mb-4">
-                    Suscribirse
-                  </button>
-                </div>
-                <!--Grid column-->
-              </div>
-              <!--Grid row-->
-            </form>
-          </section>
-          <!-- Section: Form -->
-        </div>
-        <!-- Grid container -->
-      
+    
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
           © 2022 Copyright:
-          <a class="text-white" href="https://NataliaVieraSeguridadCorporal.com/">Natalia Viera</a>
+          <a class="text-white" href="https://NataliaVieraSeguridadCorporal.com/">Axis</a>
         </div>
         <!-- Copyright -->
       </footer>
